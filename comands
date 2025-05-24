@@ -1,0 +1,14 @@
+ARG=$(shuf -i 0-1000 -n 5); RESULT=$(./push_swap $ARG); echo "$RESULT" | ./checker_linux $ARG && echo "Instructions: $(echo "$RESULT" | wc -l)"
+
+shuf -i 0-1000 -n 5 gera 5 números aleatórios únicos entre 0 e 1000.
+
+./push_swap $ARG executa o programa com esses argumentos.
+
+./checker_OS $ARG verifica se a sequência de operações está correta.
+
+wc -l conta o número de instruções emitidas.
+
+O teste falha se:
+
+O checker_OS não retornar "OK".
+O número de instruções for maior que 12.

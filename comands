@@ -6,7 +6,7 @@ shuf -i 0-1000 -n 5 gera 5 números aleatórios únicos entre 0 e 1000.
 wc -l conta o número de instruções emitidas.
 
 O teste falha se:
-O checker_OS não retornar "OK".
+O checker_linuxnão retornar "OK".
 O número de instruções for maior que 12.
 
 ARG=$(shuf -i 0-10000 -n 100); RESULT=$(./push_swap $ARG); echo "$RESULT" | ./checker_linux $ARG && echo "Instructions: $(echo "$RESULT" | wc -l)"

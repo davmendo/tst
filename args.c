@@ -1,5 +1,15 @@
 #include "fractol.h"
 
+static int	check_dot(const char *s, int i, int *dot_count)
+{
+	(*dot_count)++;
+	if (*dot_count > 1)
+		return (0);
+	if (s[i + 1] == '\0')
+		return (0);
+	return (1);
+}
+
 static int	is_valid_float(const char *s)
 {
 	int		i;
@@ -17,10 +27,7 @@ static int	is_valid_float(const char *s)
 	{
 		if (s[i] == '.')
 		{
-			dot_count++;
-			if (dot_count > 1)
-				return (0);
-			if (s[i + 1] == '\0')
+			if (!check_dot(s, i, &dot_count))
 				return (0);
 		}
 		else if (s[i] < '0' || s[i] > '9')
@@ -30,12 +37,26 @@ static int	is_valid_float(const char *s)
 	return (1);
 }
 
+static double	parse_fraction(const char **s)
+{
+	double	frac;
+	double	div;
+
+	frac = 0.0;
+	div = 1.0;
+	while (**s >= '0' && **s <= '9')
+	{
+		frac = frac * 10.0 + (**s - '0');
+		div *= 10.0;
+		(*s)++;
+	}
+	return (frac / div);
+}
+
 double	ft_atof(const char *s)
 {
 	double	res;
 	double	sign;
-	double	frac;
-	double	div;
 
 	res = 0.0;
 	sign = 1.0;
@@ -50,23 +71,9 @@ double	ft_atof(const char *s)
 	if (*s == '.')
 	{
 		s++;
-		frac = 0.0;
-		div = 1.0;
-		while (*s >= '0' && *s <= '9')
-		{
-			frac = frac * 10.0 + (*s++ - '0');
-			div *= 10.0;
-		}
-		res += frac / div;
+		res += parse_fraction(&s);
 	}
 	return (res * sign);
-}
-
-static void	init_data(t_data *data)
-{
-	data->zoom = 200.0;
-	data->offset_x = WIN_WIDTH / 2.0;
-	data->offset_y = WIN_HEIGHT / 2.0;
 }
 
 int	parse_args(int argc, char **argv, t_data *data)

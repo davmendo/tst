@@ -17,8 +17,8 @@
 NAME        = fractol
 
 # 1.1. Lista de fontes do projeto (sem usar wildcard)
-SRCS        = main.c args.c render.c hooks.c get_color.c
-OBJS        = main.o args.o render.o hooks.o get_color.o
+SRCS        = main.c args.c render.c hooks.c get_color.c draw_utils.c
+OBJS        = main.o args.o render.o hooks.o get_color.o draw_utils.o
 
 # 1.2. MiniLibX
 MLX_DIR     = minilibx-linux

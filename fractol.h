@@ -57,6 +57,8 @@ int		compute_mandelbrot(double x0, double y0);
 int		compute_julia(double x0, double y0, t_complex c);
 int		get_color(int iter);
 void	put_pixel(t_data *data, int x, int y, int color);
+void	*thread_draw(void *arg);
+void	init_data(t_data *data);
 
 int		key_hook(int keycode, t_data *data);
 int		mouse_hook(int button, int x, int y, t_data *data);

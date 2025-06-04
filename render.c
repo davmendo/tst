@@ -17,7 +17,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	compute_mandelbrot(double x0, double y0)
+int	compute_mandelbrot(double x0, double y0, int max_iter)
 {
 	double	x;
 	double	y;
@@ -27,7 +27,7 @@ int	compute_mandelbrot(double x0, double y0)
 	x = 0.0;
 	y = 0.0;
 	iter = 0;
-	while (x * x + y * y <= 4.0 && iter < MAX_ITER)
+	while (x * x + y * y <= 4.0 && iter < max_iter)
 	{
 		xtemp = x * x - y * y + x0;
 		y = 2 * x * y + y0;
@@ -37,7 +37,7 @@ int	compute_mandelbrot(double x0, double y0)
 	return (iter);
 }
 
-int	compute_julia(double x0, double y0, t_complex c)
+int	compute_julia(double x0, double y0, t_complex c, int max_iter)
 {
 	double	x;
 	double	y;
@@ -47,7 +47,7 @@ int	compute_julia(double x0, double y0, t_complex c)
 	x = x0;
 	y = y0;
 	iter = 0;
-	while (x * x + y * y <= 4.0 && iter < MAX_ITER)
+	while (x * x + y * y <= 4.0 && iter < max_iter)
 	{
 		xtemp = x * x - y * y + c.re;
 		y = 2 * x * y + c.im;

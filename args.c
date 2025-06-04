@@ -75,7 +75,7 @@ double	ft_atof(const char *s)
 	}
 	return (res * sign);
 }
-
+/*
 int	parse_args(int argc, char **argv, t_data *data)
 {
 	init_data(data);
@@ -96,6 +96,36 @@ int	parse_args(int argc, char **argv, t_data *data)
 		data->julia_c.re = ft_atof(argv[2]);
 		if (!is_valid_float(argv[3]))
 			print_usage();
+		data->julia_c.im = ft_atof(argv[3]);
+		data->type = FRACT_JULIA;
+	}
+	else
+		print_usage();
+	return (0);
+}
+*/
+
+int	parse_args(int argc, char **argv, t_data *data)
+{
+	if (argc < 2)
+		print_usage();
+	if (ft_strncmp(argv[1], "mandelbrot", 11) == 0)
+	{
+		if (argc != 2)
+			print_usage();
+		init_data(data);
+		data->type = FRACT_MANDELBROT;
+	}
+	else if (ft_strncmp(argv[1], "julia", 6) == 0)
+	{
+		if (argc != 4)
+			print_usage();
+		if (!is_valid_float(argv[2]))
+			print_usage();
+		if (!is_valid_float(argv[3]))
+			print_usage();
+		init_data(data);
+		data->julia_c.re = ft_atof(argv[2]);
 		data->julia_c.im = ft_atof(argv[3]);
 		data->type = FRACT_JULIA;
 	}

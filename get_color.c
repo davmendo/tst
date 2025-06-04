@@ -11,5 +11,5 @@ int	get_color(int iter)
 	r = (iter * 9) % 256;
 	g = (iter * 7) % 256;
 	b = (iter * 3) % 256;
-	return ((r << 16) | (g << 8) | (b));
+	return (r * 65536 + g * 256 + b);
 }
